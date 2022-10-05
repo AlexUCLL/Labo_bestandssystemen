@@ -1,8 +1,8 @@
 # Labo_bestandssystemen
 
 Download volgende ovf's:
-- Debian zonder partities
-- Debian met partities
+- [Debian zonder partities](https://files.ucll.be/Handlers/Download.ashx?file=Education%2FCourseInfo%2FManagement%20en%20Technologie%2FTechnologie%20Leuven%2FComputer%20Systems%2FOVF%2FLabo%20Partities%2FLab_Debian_zp.zip&action=download)
+- [Debian met partities](https://files.ucll.be/Handlers/Download.ashx?file=Education%2FCourseInfo%2FManagement%20en%20Technologie%2FTechnologie%20Leuven%2FComputer%20Systems%2FOVF%2FLabo%20Partities%2FLab_Debian_mp.zip&action=download)
 
 Importeer deze ovf's in VmWare. Indien dit gelukt is, zou je nu twee nieuwe virtuele machines in je lijst moeten hebben.
 
