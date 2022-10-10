@@ -127,9 +127,17 @@ Om de header file correct te kunnen uitlezen, kan je gebruik maken van het comma
 ```
 Dit is letterlijk de hexadecimale output van de headerfile (en dus eigenlijk van LBA 1 waar de header van de GPT tabel zich bevindt). Om alle verschillende onderdelen uit de tabel te halen, zou je kunnen tellen om zo de juiste bytes eruit te kunnen halen. Het commando `hexyl` heeft echter een aantal opties waardoor het niet nodig is om handmatig te tellen.
 
+![GPT](./img/gpt1.gif)
 
+Probeer aan de hand van bovenstaande tabel en het `hexyl` command volgend gegevens uit de header file te krijgen:
+- Signature
+- Current LBA
+- Backup LBA
+- Aantal partities in de tabel
+- Grootte van item in partietitabel
 
-(aantal parties eruit halen, LBA nummer van eerst bruikbaar deel opzoeken, LBA nummer laatste deel opzoeken)
+Voor de laatste twee zal je je kennis moeten gebruiken dat van de talstelsels die we in de eerste week hebben gezien.
+
 #### GPT entry bekijken
 (first LBA, last LBA)
 
