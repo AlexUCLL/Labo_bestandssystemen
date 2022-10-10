@@ -66,17 +66,45 @@ Zelf partities aanmaken is eigenlijk niet zo moeilijk. Hiervoor bestaan er heel 
 
 Voor we zelf partities gaan aanmaken, gaan we eerst even een partitietabel van dichterbij bekijken.
 ### GParted
-
+Analyse maken partities
 ### Parted
 
+### Analyse
+- GPT tabel extracten
+- GPT header bekijken (aantal parties eruit halen, LBA nummer van eerst bruikbaar deel opzoeken, LBA nummer laatste deel opzoeken)
+- GPT entry bekijken (first LBA, last LBA)
+
+### Partities aanmaken
+- nieuwe hdd toevoegen aan VM
+- Opdelen in 3 partities
+- Nieuwe Mint vm aanmaken met correct partities (indeling zelf geven)
+
 ## Raid
+
+Nog eens korte uitleg over RAID
 
 ### Raid 1
 ```
 mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 --level=1 --raid-devices=2
 ```
+- Bestand aanmaken
+- Afsluiten
+- Schijf verwijderen
+- terug opstarten
+- Bestand nog beschikbaar?
+- Nieuwe SSD maken
+- Toevoegen aan Raid
 
 ### Raid 5
 ```
 mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 /dev/sdc1 --level=5 --raid-devices=3
 ```
+- Meerdere bestanden aanmaken
+- Afsluiten
+- Schijf verwijderen
+- terug opstarten
+- Bestanden nog beschikbaar?
+- SSD verijderen
+- Bestanden nog beschikbaar?
+- Nieuwe SSD maken
+- Toevoegen aan Raid
