@@ -35,7 +35,7 @@ su -
 ```
 Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'set user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van 'ucll' user *(dit is inderdaad niet veilig en het wachtwoord op zich ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
 
-Vervolgens voeren we volgende commando uit. Je mag dit voorlopig gewoon kopieren en uitvoeren. Als je echt wil weten wat deze commando's doen, mag he dit gerust opzoeken of vragen aan je docent (liefst beide).
+Vervolgens voeren we volgende commando uit. Je mag dit voorlopig gewoon kopieren en uitvoeren. Als je echt wil weten wat deze commando's doen, mag je dit gerust opzoeken of vragen aan je docent (liefst beide).
 ```bash
 for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done
 ```
