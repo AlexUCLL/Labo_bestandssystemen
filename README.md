@@ -94,7 +94,12 @@ Number  Start   End     Size    File system     Name  Flags
 
 ```
 ### Analyse
-- GPT tabel extracten
+
+Hoewel Parted en Gparted ons een mooi overzicht geven, is het ook mogelijk dit nog een stapje verder te zetten: puur naar de bytes gaan kijken. Dit gaan we in verschillende stappen moeten doen:
+#### GPT tabel extracten:
+We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's van een harde schijf bevind. Door gebruik te maken van `dd` kunnen we de nodige bytes kopieren naar bestand. De meeste belangrijkste bytes bevinden zich in de GPT Header. Standaard zal deze zich in LBA 1 bevinden. Het commando om deze te kopieëren is `dd if=/dev/sda of=/root/header bs=512 skip=1 count=1`
+  
+ Na het uitvoeren van dit bestand bevind de volledige inhoud van LBA 1 zich in de file header.
 - GPT header bekijken (aantal parties eruit halen, LBA nummer van eerst bruikbaar deel opzoeken, LBA nummer laatste deel opzoeken)
 - GPT entry bekijken (first LBA, last LBA)
 
