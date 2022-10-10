@@ -139,7 +139,16 @@ Probeer aan de hand van bovenstaande tabel en het `hexyl` command volgend gegeve
 Voor de laatste twee zal je je kennis moeten gebruiken dat van de talstelsels die we in de eerste week hebben gezien.
 
 #### GPT entry bekijken
-(first LBA, last LBA)
+![gpt2](./img/gpt.gif)
+Pas volgende commando correct aan zodat je de inhoud van LBA2 in een nieuwe file zet
+```bash
+dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
+```
+![gpt3](./img/gpt2.png)
+
+Zorg dat je volgende gegevens uit de juist aangemaakte file kan halen:
+- Eerste LBA
+- Laatste LBA
 
 ### Partities aanmaken
 - nieuwe hdd toevoegen aan VM
