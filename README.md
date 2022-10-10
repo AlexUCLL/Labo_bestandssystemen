@@ -68,7 +68,31 @@ Voor we zelf partities gaan aanmaken, gaan we eerst even een partitietabel van d
 ### GParted
 Analyse maken partities
 ### Parted
+Ook in cli kan je de partities bekijken van een harde schijf door gebruik te maken van `parted`. Zorg dat je de vm 'Debian_mp' opstart. Eenmaal opgestart voer volgende commando uit als root:
+```bash
+root@debian-mp:~# parted /dev/sda
+GNU Parted 3.4
+Using /dev/sda
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted)                                                                  
+```
+Typ nu `print`. Dit zou je normaal een overzicht moeten geven van alle partities die zich op je vm bevinden:
+```bash
+Model: VMware, VMware Virtual S (scsi)
+Disk /dev/sda: 21.5GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
 
+Number  Start   End     Size    File system     Name  Flags
+ 1      1049kB  538MB   537MB   fat32                 boot, esp
+ 2      538MB   4862MB  4324MB  ext4
+ 3      4862MB  6636MB  1774MB  ext4
+ 4      6636MB  7661MB  1024MB  linux-swap(v1)        swap
+ 5      7661MB  8046MB  385MB   ext4
+ 6      8046MB  21.5GB  13.4GB  ext4
+
+```
 ### Analyse
 - GPT tabel extracten
 - GPT header bekijken (aantal parties eruit halen, LBA nummer van eerst bruikbaar deel opzoeken, LBA nummer laatste deel opzoeken)
