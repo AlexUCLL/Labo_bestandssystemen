@@ -151,9 +151,32 @@ Zorg dat je volgende gegevens uit de juist aangemaakte file kan halen:
 - Laatste LBA
 
 ### Partities aanmaken
+
+Voeg een nieuwe harde schijf toe aan de 'Debian_zp' van 30GB toe. Start de vm nadien op. Eenmaal opgestart voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. 
 - nieuwe hdd toevoegen aan VM
 - Opdelen in 3 partities
 - Nieuwe Mint vm aanmaken met correct partities (indeling zelf geven)
+
+Een goede linux installatie zal minimum steeds bestaan uit volgende partities:
+- swap
+- /
+- /home
+- /var
+- /tmp
+- EFI boot
+
+Deze partities zijn ook geconfigureerd op de 'Debian_mp' vm:
+```bash
+root@debian-mp:~# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   20G  0 disk 
+├─sda1   8:1    0  512M  0 part /boot/efi
+├─sda2   8:2    0    4G  0 part /
+├─sda3   8:3    0  1.7G  0 part /var
+├─sda4   8:4    0  977M  0 part [SWAP]
+├─sda5   8:5    0  367M  0 part /tmp
+└─sda6   8:6    0 12.5G  0 part /home
+```
 
 ## Raid
 
