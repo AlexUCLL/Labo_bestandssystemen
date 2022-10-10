@@ -97,10 +97,36 @@ Number  Start   End     Size    File system     Name  Flags
 
 Hoewel Parted en Gparted ons een mooi overzicht geven, is het ook mogelijk dit nog een stapje verder te zetten: puur naar de bytes gaan kijken. Dit gaan we in verschillende stappen moeten doen:
 #### GPT tabel extracten:
-We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's van een harde schijf bevind. Door gebruik te maken van `dd` kunnen we de nodige bytes kopieren naar bestand. De meeste belangrijkste bytes bevinden zich in de GPT Header. Standaard zal deze zich in LBA 1 bevinden. Het commando om deze te kopieëren is `dd if=/dev/sda of=/root/header bs=512 skip=1 count=1`
-  
- Na het uitvoeren van dit bestand bevind de volledige inhoud van LBA 1 zich in de file header.
+We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's van een harde schijf bevind. Door gebruik te maken van `dd` kunnen we de nodige bytes kopieren naar een bestand. De meeste belangrijkste bytes bevinden zich in de GPT Header. Standaard zal deze zich in LBA 1 bevinden. Het commando om deze te kopieëren is 
+```bash
+dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
+```
+Na het uitvoeren van dit bestand bevindt de volledige inhoud van LBA 1 zich in de file 'header'.
+
 #### GPT header bekijken
+Probeer deze file nu eens uit te lezen. Het commando hiervoor hebben we al geleerd.
+
+Echter dit geeft enkel volgende output (kan je ook verklaren waarom?):
+```
+EFI PART\�����"��P�d5�;D���K�������}a
+```
+
+Om de header file correct te kunnen uitlezen, kan je gebruik maken van het commando `hexyl`. Indien je dit correct gedaan hebt, zou je volgende output moeten hebben:
+```
+┌────────┬─────────────────────────┬─────────────────────────┬────────┬────────┐
+│00000000│ 45 46 49 20 50 41 52 54 ┊ 00 00 01 00 5c 00 00 00 │EFI PART┊00•0\000│
+│00000010│ a8 b4 ef be 00 00 00 00 ┊ 01 00 00 00 00 00 00 00 │××××0000┊•0000000│
+│00000020│ ff ff 7f 02 00 00 00 00 ┊ 22 00 00 00 00 00 00 00 │××••0000┊"0000000│
+│00000030│ de ff 7f 02 00 00 00 00 ┊ 50 9e 64 1f 35 db 3b 44 │××••0000┊P×d•5×;D│
+│00000040│ b1 b0 f6 4b e5 fa 8e b5 ┊ 02 00 00 00 00 00 00 00 │×××K××××┊•0000000│
+│00000050│ 80 00 00 00 80 00 00 00 ┊ d2 14 7d 61 00 00 00 00 │×000×000┊×•}a0000│
+│00000060│ 00 00 00 00 00 00 00 00 ┊ 00 00 00 00 00 00 00 00 │00000000┊00000000│
+│*       │                         ┊                         │        ┊        │
+│00000200│                         ┊                         │        ┊        │
+└────────┴─────────────────────────┴─────────────────────────┴────────┴────────┘
+```
+Dit is letterlijk de hexadecimale output van de headerfile (en dus eigenlijk van LBA 1 waar de header van de GPT tabel zich bevindt). Om alle verschillende onderdelen uit de tabel te halen, zou je kunnen tellen om zo de juiste bytes eruit te kunnen halen. Het commando `hexyl` heeft echter een aantal opties waardoor het niet nodig is om handmatig te tellen
+
 (aantal parties eruit halen, LBA nummer van eerst bruikbaar deel opzoeken, LBA nummer laatste deel opzoeken)
 #### GPT entry bekijken
 (first LBA, last LBA)
