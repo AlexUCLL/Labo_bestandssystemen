@@ -136,7 +136,7 @@ Probeer aan de hand van bovenstaande tabel en het `hexyl` command volgend gegeve
 - Aantal partities in de tabel
 - Grootte van item in partietitabel
 
-Voor de laatste twee zal je je kennis moeten gebruiken dat van de talstelsels die we in de eerste week hebben gezien.
+Voor de laatste twee zal je je kennis moeten gebruiken van de talstelsels dat we in de eerste week hebben gezien.
 
 #### GPT entry bekijken
 ![gpt2](./img/gpt.gif)
