@@ -74,7 +74,20 @@ Nu we het nut van partities kennen, wordt het tijd om zelf te leren hoe je parti
 Voor we zelf partities gaan aanmaken, gaan we eerst even een partitietabel van dichterbij bekijken.
 ### GParted
 
+Zorg dat alle voorgaande VM's correct afgesloten worden en start daarna je Ubuntu VM van het eerste labo. 'GParted' is normaal niet standaard geïnstalleerd op je vm. Het eerste wat we dus moeten doen is 'GParted' installeren.
 
+Als je dat gedaan hebt en je start 'GParted' op, krijg je normaal volgend scherm te zien.
+
+![u_part](./img/ubuntu_part.png)
+
+Dit geeft je een overzicht van alle partities die op de harde schijf ter beschikking zijn. In dit overzicht krijgen we al heel wat informatie:
+- **Partition**: hier krijgen we de naam zoals dit gekend is op hardware niveau in het systeem.
+- **Name**: Bij het aanmaken van een partitie kunnen we meer gebruiksvriendelijkere naam configureren
+- **File system**: Zoals we gezien hebben in de theorie moet elke paritie geformateerd worden in een bepaald filesysteem voor we gebruik kunnen maken van de partitie om files en directories aan te maken.
+- **Mount Point**: Naast een hardware verwijzing moet er ook een 'mount point' geconfigureerd worden. Dit is eigenlijk een directory waarin het filesysteem van die partitie beschikbaar wordt gemaakt voor het OS.
+- **Flags**: Aan elke partitie kunnen we bepaalde vlaggen instellen en die een extra functionaliteit toevoegen aan een partitie. Zo als er minstens 1 partitie met de 'boot flag' moeten geconfigueerd worden om ervoor te zorgen dat het OS kan opstarten. De BIOS zal na zijn post immers deze partitie gebruiken om het OS te kunnen laten opstarten.
+
+Indien nog meer details wilt weten 
 ### Parted
 Ook in cli kan je de partities bekijken van een harde schijf door gebruik te maken van `parted`. Zorg dat je de vm 'Debian_mp' opstart. Eenmaal opgestart voer volgende commando uit als root:
 ```bash
