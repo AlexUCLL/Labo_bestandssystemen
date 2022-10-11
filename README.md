@@ -15,7 +15,7 @@ Start de VM met naam "Debian_zp". Je zal merken dat dit een linux server is zond
   - Username: ucll
   - Password: ucllrocks
 
-Het eerste wat we gaan doen is nakijken hoeveel harde schijf ruimte er beschikbaar is op deze servers. Dit doe je door het commando `df` te gebruiken. Normaal krijg je volgende overzicht:
+Het eerste wat we gaan doen is nagaan hoeveel harde schijf ruimte er beschikbaar is op deze servers. Dit doe je door het commando `df` te gebruiken. Normaal krijg je volgende overzicht:
 ```bash
 ucll@debian-zp:~$ df
 Filesystem     1K-blocks    Used Available Use% Mounted on
@@ -35,14 +35,16 @@ su -
 ```
 Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'set user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van 'ucll' user *(dit is inderdaad niet veilig en het wachtwoord op zich ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
 
-Vervolgens voeren we volgende commando uit. Met wat je ondertussen hebt geleerd over Python en 'Linux Unhatched' zou dit normaal voleldig moeten begrijpen. Zoeniet, zal `man` en 'Google' als een heel eind verder brengen om het volledig te begrijpen.
+Vervolgens voeren we volgende commando uit. Met wat je ondertussen hebt geleerd over Python en 'Linux Unhatched' zou dit normaal voleldig moeten begrijpen. Zoniet, zal `man` en 'Google' je al een heel eind verder brengen om het volledig te begrijpen.
 ```bash
 for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done
 ```
 Achterhaal hoeveel ruimte er nog vrij is op de harde schijf na het uitvoeren van dit commando.
 
 Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op het eerste zicht lijkt het alsof het systeem nog perfect werkt. Probeer nu om de applicatie 'screen' te installeren. Met wat je hebt geleerd in vorige labo's zou dit geen probleem mogen zijn.
+
 :question: Kan het systeem de applicatie installeren?
+
 :question: Waarom wel/niet?
 
 Je mag de vm afsluiten door gebruik te maken volgend commando:
@@ -60,12 +62,14 @@ Voer volgende stappen uit in deze vm:
 - Kijk na hoeveel ruimte er nog beschikbaar is op de harde schijf/partities
 - Installeer de applicate 'screen'
 
-Lukt het nu wel om de applicatie te installeren? Waarom wel/niet?
+:question: Lukt het nu wel om de applicatie te installeren?
+
+:question: Waarom wel/niet?
 
 Na dit deel van het labo zou het duidelijk moeten zijn wat één van de voordelen is van het gebruik van partities.
 
 ## Partities
-Nu we het nu van partities kennen, wordt het tijd om zelf te leren hoe je partities moeten aanmaaken, hetgeen niet zo moeilijk is. Hiervoor bestaan er heel wat tools die zowel in Linux als Windows beschikbaar zijn. Voor dit labo gaan wij gebruik maken van `parted`. Het voordeelvan parted is, dat hiervoor ook een GUI applicatie is geschreven, dewelke je in Ubuntu kan gebruiken: `GParted`.
+Nu we het nut van partities kennen, wordt het tijd om zelf te leren hoe je partities moeten aanmaaken, hetgeen niet zo moeilijk is. Hiervoor bestaan er heel wat tools die zowel in Linux als Windows beschikbaar zijn. Voor dit labo gaan wij gebruik maken van `parted`. Het voordeel van parted is, dat hiervoor ook een GUI applicatie is geschreven, dewelke je in Ubuntu kan gebruiken: `GParted`.
 
 Voor we zelf partities gaan aanmaken, gaan we eerst even een partitietabel van dichterbij bekijken.
 ### GParted
