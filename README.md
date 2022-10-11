@@ -56,7 +56,7 @@ shutdown -h now
 Start nu de vm 'Debian_mp' op.
 Voer volgende stappen uit in deze vm:
 - Log in met de ucll gebruiker
-- Wordt 'root'
+- Word 'root'
 - Kijk na hoeveel vrije ruimte er op de harde schijf/partities is.
 - Voer het volgende commando uit: `for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done`
 - Kijk na hoeveel ruimte er nog beschikbaar is op de harde schijf/partities
@@ -82,10 +82,10 @@ Als je dat gedaan hebt en je start 'GParted' op, krijg je normaal volgend scherm
 
 Dit geeft je een overzicht van alle partities die op de harde schijf ter beschikking zijn. In dit overzicht krijgen we al heel wat informatie:
 - **Partition**: hier krijgen we de naam zoals dit gekend is op hardware niveau in het systeem.
-- **Name**: Bij het aanmaken van een partitie kunnen we meer gebruiksvriendelijkere naam configureren
+- **Name**: Bij het aanmaken van een partitie kunnen we een meer gebruiksvriendelijkere naam configureren
 - **File system**: Zoals we gezien hebben in de theorie moet elke paritie geformateerd worden in een bepaald filesysteem voor we gebruik kunnen maken van de partitie om files en directories aan te maken.
 - **Mount Point**: Naast een hardware verwijzing moet er ook een 'mount point' geconfigureerd worden. Dit is eigenlijk een directory waarin het filesysteem van die partitie beschikbaar wordt gemaakt voor het OS.
-- **Flags**: Aan elke partitie kunnen we bepaalde vlaggen instellen en die een extra functionaliteit toevoegen aan een partitie. Zo als er minstens 1 partitie met de 'boot flag' moeten geconfigueerd worden om ervoor te zorgen dat het OS kan opstarten. De BIOS zal na zijn post immers deze partitie gebruiken om het OS te kunnen laten opstarten.
+- **Flags**: Voor elke partitie kunnen we bepaalde vlaggen instellen die een extra functionaliteit toevoegen aan een partitie. Zo moet er minstens 1 partitie met de 'boot flag' geconfigueerd worden om ervoor te zorgen dat het OS kan opstarten. De BIOS zal na zijn post immers deze partitie gebruiken om het OS te kunnen laten opstarten.
 
 Indien je nog meer details wilt weten over een bepaalde partitie volstaat om deze partitie te selecteren, rechter muisklik, 'Information'. Dit zal ook GUID laten zien, alsook de eerste en laatste sector die gebruikt is voor de partitie.
 
