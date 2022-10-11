@@ -184,17 +184,85 @@ Zorg dat je volgende gegevens uit de juist aangemaakte file kan halen:
 
 - Voeg een nieuwe harde schijf toe aan de 'Debian_zp' van 30GB toe.
 - Start de vm op
-- Eenmaal opgestart voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. Je nieuwe harde schijf moet hier normaal ook tussen staan. Zorg dat je duidelijk weet wat je nieuwe toegevoegde harde schijf is. Dit zal normaal `/dev/sdb` zijn.
+- Eenmaal opgestart voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. Je nieuwe harde schijf moet hier normaal ook tussen staan. Zorg dat je duidelijk weet wat je nieuwe toegevoegde harde schijf is. Dit zal normaal `/dev/sda` zijn.
+
+```bash
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   30G  0 disk 
+sdb      8:16   0   20G  0 disk 
+|-sdb1   8:17   0  512M  0 part /boot/efi
+|-sdb2   8:18   0 18.5G  0 part /
+`-sdb3   8:19   0  976M  0 part [SWAP]
+sr0     11:0    1 1024M  0 rom  
+```
 
 #### Mount point aanmaken
 
 - Maak een nieuwe directory aan genaamd: /Party
 
 #### Nieuwe partitietabel aanmaken
+Het eerste wat we moeten doen is een partitietabel aanmaken in parted:
+```bash
+# parted /dev/sda
+(parted) mklabel gpt
+(parted) print                                                            
+Model: VMware, VMware Virtual S (scsi)
+Disk /dev/sda: 32.2GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
 
+Number  Start  End  Size  File system  Name  Flags
+
+(parted)                                                                  
+```
 
 #### Nieuwe partie aanmaken met correct filessystem
+```
+(parted) mkpart                                                           
+Partition name?  []? Party                                                
+File system type?  [ext2]? ext4                                           
+Start? 1                                                                  
+End? 10000                                                                
+(parted) print                                                            
+Model: VMware, VMware Virtual S (scsi)
+Disk /dev/sda: 32.2GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
 
+Number  Start   End     Size    File system  Name   Flags
+ 1      1049kB  10.0GB  9999MB  ext4         Party
+
+(parted) quit                                                             
+```
+De partitie is nu aangemaakt, maar om deze nu te kunnen gebruiken moeten we deze nog formateren in het correcte filesysteem. Met het `lsblk -f`commando is het meteen duidelijk de nieuwe aangemaakte partitie nog geen filesysteem heeft. Om dit in orde te maken, maken we gebruik van `mkfs`:
+```bash
+root@debian-zp:~# lsblk -f
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+sda                                                                         
+└─sda1
+                                                                            
+sdb                                                                         
+├─sdb1
+│    vfat   FAT32       8E96-C30A                             507.6M     1% /boot/efi
+├─sdb2
+│    ext4   1.0         d07c0dac-6789-46f0-ae72-7cf548295042   15.7G     8% /
+└─sdb3
+     swap   1           357d776f-78af-4e0f-9ee7-88fad06138bb                [SWAP]
+sr0                                                                         
+root@debian-zp:~# mkfs -t ext4 /dev/sda1
+mke2fs 1.46.2 (28-Feb-2021)
+Creating filesystem with 2441216 4k blocks and 610800 inodes
+Filesystem UUID: fc2c44f2-382b-488b-b82a-eb4b36b641a9
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (16384 blocks): done
+Writing superblocks and filesystem accounting information: done 
+```
 
 #### Partitie mounten
 
