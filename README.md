@@ -41,7 +41,9 @@ for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; d
 ```
 Achterhaal hoeveel ruimte er nog vrij is op de harde schijf na het uitvoeren van dit commando.
 
-Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op het eerste zicht lijkt het alsof het systeem nog perfect werkt. Probeer nu om de applicatie 'screen' te installeren. Met wat je hebt geleerd in vorige labo's zou dit geen probleem mogen zijn. Kan het systeem de applicatie installeren? Waarom wel/niet?
+Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op het eerste zicht lijkt het alsof het systeem nog perfect werkt. Probeer nu om de applicatie 'screen' te installeren. Met wat je hebt geleerd in vorige labo's zou dit geen probleem mogen zijn.
+:question: Kan het systeem de applicatie installeren?
+:question: Waarom wel/niet?
 
 Je mag de vm afsluiten door gebruik te maken volgend commando:
 ```bash
