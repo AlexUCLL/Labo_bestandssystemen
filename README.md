@@ -87,7 +87,10 @@ Dit geeft je een overzicht van alle partities die op de harde schijf ter beschik
 - **Mount Point**: Naast een hardware verwijzing moet er ook een 'mount point' geconfigureerd worden. Dit is eigenlijk een directory waarin het filesysteem van die partitie beschikbaar wordt gemaakt voor het OS.
 - **Flags**: Aan elke partitie kunnen we bepaalde vlaggen instellen en die een extra functionaliteit toevoegen aan een partitie. Zo als er minstens 1 partitie met de 'boot flag' moeten geconfigueerd worden om ervoor te zorgen dat het OS kan opstarten. De BIOS zal na zijn post immers deze partitie gebruiken om het OS te kunnen laten opstarten.
 
-Indien nog meer details wilt weten 
+Indien je nog meer details wilt weten over een bepaalde partitie volstaat om deze partitie te selecteren, rechter muisklik, 'Information'. Dit zal ook GUID laten zien, alsook de eerste en laatste sector die gebruikt is voor de partitie.
+
+💡 Doe dit ook werkelijk voor alle partities!
+
 ### Parted
 Ook in cli kan je de partities bekijken van een harde schijf door gebruik te maken van `parted`. Zorg dat je de vm 'Debian_mp' opstart. Eenmaal opgestart voer volgende commando uit als root:
 ```bash
@@ -116,9 +119,10 @@ Number  Start   End     Size    File system     Name  Flags
 ```
 ### Analyse
 
-Hoewel Parted en Gparted ons een mooi overzicht geven, is het ook mogelijk dit nog een stapje verder te zetten: puur naar de bytes gaan kijken. Dit gaan we in verschillende stappen moeten doen:
+Hoewel Parted en GParted ons een mooi overzicht geven, is het ook mogelijk dit nog een stapje verder te zetten: puur naar de bytes gaan kijken. Alle applicaties voor het aanmaken of aanpassen van partities doen dit immers ook. Dit gaan we echter in verschillende stappen moeten doen:
+
 #### GPT tabel extracten:
-We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's van een harde schijf bevind. Door gebruik te maken van `dd` kunnen we de nodige bytes kopieren naar een bestand. De meeste belangrijkste bytes bevinden zich in de GPT Header. Standaard zal deze zich in LBA 1 bevinden. Het commando om deze te kopieëren is 
+We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's van een harde schijf bevind. Door gebruik te maken van `dd` kunnen we de nodige bytes kopieren naar een bestand. De meeste belangrijkste bytes bevinden zich in de GPT Header. Standaard zal deze zich in LBA 1 bevinden. Het commando om deze te kopieëren is: 
 ```bash
 dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
 ```
@@ -157,7 +161,10 @@ Probeer aan de hand van bovenstaande tabel en het `hexyl` command volgend gegeve
 - Aantal partities in de tabel
 - Grootte van item in partietitabel
 
-Voor de laatste twee zal je je kennis moeten gebruiken van de talstelsels dat we in de eerste week hebben gezien.
+❓Hoeveel partitie items bevinden zich in de tabel?
+❓Wat is de grootte van een partitie item in de tabel?
+
+Voor deze vragen zal je je kennis moeten gebruiken van de talstelsels dat we in de eerste week hebben gezien.
 
 #### GPT entry bekijken
 ![gpt2](./img/gpt.gif)
@@ -173,9 +180,40 @@ Zorg dat je volgende gegevens uit de juist aangemaakte file kan halen:
 
 ### Partities aanmaken
 
-Voeg een nieuwe harde schijf toe aan de 'Debian_zp' van 30GB toe. Start de vm nadien op. Eenmaal opgestart voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. 
-- nieuwe hdd toevoegen aan VM
-- Opdelen in 3 partities
+#### Fysieke Harde schijf toevoegen
+
+- Voeg een nieuwe harde schijf toe aan de 'Debian_zp' van 30GB toe.
+- Start de vm op
+- Eenmaal opgestart voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. Je nieuwe harde schijf moet hier normaal ook tussen staan. Zorg dat je duidelijk weet wat je nieuwe toegevoegde harde schijf is. Dit zal normaal `/dev/sdb` zijn.
+
+#### Mount point aanmaken
+
+- Maak een nieuwe directory aan genaamd: /Party
+
+#### Nieuwe partitietabel aanmaken
+
+
+#### Nieuwe partie aanmaken met correct filessystem
+
+
+#### Partitie mounten
+
+Als alles alles goed is gegaan, zou je normaal nu een nieuwe partitie moeten hebben die je in je systeem kan gebruiken.
+
+▶️ Ga nu zelf aan de slag om nog 2 extra partities aan te maken (De stap van partietabel aanmaken, moet je nu niet meer doen!):
+- Partitie 2:
+  - 10GB
+  - Mount pount: /UCLL
+  - Filesystem: Fat32
+ - Partitie 3:
+  - 10GB
+  - Mount point: /Rocks
+  - Filessystem: NTFS   
+
+### Next Level
+Nu je perfect weet hoe een partitie in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren:
+- Download volgende [iso]().
+? Maak dan een nieuwe VM aan
 - Nieuwe Mint vm aanmaken met correct partities (indeling zelf geven)
 
 Een goede linux installatie zal minimum steeds bestaan uit volgende partities:
