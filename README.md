@@ -318,7 +318,19 @@ tmpfs           195M     0  195M   0% /run/user/1000
   - Filessystem: NTFS
 
 Na het toevoegen van de parititie zou je ongeveer deze output moeten hebben:
-
+```bash
+root@debian-zp:~# lsblk -f
+NAME   FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+sda                                                                           
+├─sda1 ext4   1.0         fc2c44f2-382b-488b-b82a-eb4b36b641a9    8.6G     0% /Party
+├─sda2 vfat   FAT32       4333-EE1E                               9.3G     0% /UCLL
+└─sda3 ntfs               596DB3E17D1F7047                        9.3G     1% /Rocks
+sdb                                                                           
+├─sdb1 vfat   FAT32       8E96-C30A                             507.6M     1% /boot/efi
+├─sdb2 ext4   1.0         d07c0dac-6789-46f0-ae72-7cf548295042   15.7G     8% /
+└─sdb3 swap   1           357d776f-78af-4e0f-9ee7-88fad06138bb                [SWAP]
+sr0                                                                           
+```
 
 ### Next Level
 Nu je perfect weet hoe een partitie in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren:
