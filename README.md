@@ -205,7 +205,7 @@ Als alles alles goed is gegaan, zou je normaal nu een nieuwe partitie moeten heb
   - 10GB
   - Mount pount: /UCLL
   - Filesystem: Fat32
- - Partitie 3:
+- Partitie 3:
   - 10GB
   - Mount point: /Rocks
   - Filessystem: NTFS   
