@@ -219,6 +219,9 @@ Number  Start  End  Size  File system  Name  Flags
 ```
 
 #### Nieuwe partie aanmaken met correct filessystem
+
+Nu de partitietabel is aangemaakt op de hdd, gaan we een partitie aanmaken:
+
 ```
 (parted) mkpart                                                           
 Partition name?  []? Party                                                
@@ -237,7 +240,8 @@ Number  Start   End     Size    File system  Name   Flags
 
 (parted) quit                                                             
 ```
-De partitie is nu aangemaakt, maar om deze nu te kunnen gebruiken moeten we deze nog formateren in het correcte filesysteem. Met het `lsblk -f`commando is het meteen duidelijk de nieuwe aangemaakte partitie nog geen filesysteem heeft. Om dit in orde te maken, maken we gebruik van `mkfs`:
+De partitie is nu aangemaakt, maar om deze te kunnen gebruiken moeten we de parities formateren in het correcte filesysteem. Met het `lsblk -f`commando is het meteen duidelijk dat de nieuwe aangemaakte partitie nog geen filesysteem heeft. Om dit in orde te maken, maken we gebruik van `mkfs`:
+
 ```bash
 root@debian-zp:~# lsblk -f
 NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
@@ -252,6 +256,7 @@ sdb
 └─sdb3
      swap   1           357d776f-78af-4e0f-9ee7-88fad06138bb                [SWAP]
 sr0                                                                         
+
 root@debian-zp:~# mkfs -t ext4 /dev/sda1
 mke2fs 1.46.2 (28-Feb-2021)
 Creating filesystem with 2441216 4k blocks and 610800 inodes
@@ -264,7 +269,9 @@ Writing inode tables: done
 Creating journal (16384 blocks): done
 Writing superblocks and filesystem accounting information: done 
 ```
+
 Met `lsblk -f` kunnen we controleren of het aanmaken van het filessysteem op de partitie is gelukt.
+
 ```bash
 root@debian-zp:~# lsblk -f
 NAME   FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
@@ -279,12 +286,13 @@ sr0
 
 #### Partitie mounten
 
-Het enige wat ons nu nog rest is de geconfigureerde partie  mounten:
+Het enige wat ons nu nog rest is de geconfigureerde partie mounten zodat we ze werkelijk kunnen gebruiken in het OS
+:
 ```bash
 root@debian-zp:/# mount -t auto /dev/sda1 /Party
 ```
 
-Als alles alles goed is gegaan, zou je normaal nu een nieuwe partitie moeten hebben die je in je systeem kan gebruiken:
+Als alles alles goed is gegaan, zou je normaal een nieuwe partitie moeten hebben die je in je systeem kan gebruiken:
 ```bash
 root@debian-zp:~# lsblk -f
 NAME   FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
@@ -308,7 +316,7 @@ tmpfs           195M     0  195M   0% /run/user/1000
 /dev/sda1       9.1G   24K  8.6G   1% /Party
 ```
 
-▶️ Ga nu zelf aan de slag om nog 2 extra partities aan te maken (De stap van partietabel aanmaken, moet je nu niet meer doen!):
+▶️ Ga nu zelf aan de slag om nog 2 extra partities aan te maken op HDD waar we hierboven een partitie hebben aangemaakt (De stap van partietabel aanmaken, moet je nu niet meer doen!):
 - Partitie 2:
   - 10GB
   - Mount pount: /UCLL
@@ -318,8 +326,8 @@ tmpfs           195M     0  195M   0% /run/user/1000
   - Mount point: /Rocks
   - Filessystem: NTFS
 
-💡Je zal merken dat je hiervoor een aantal packages moet installeren om de partities te kunnen formateren in NTFS of FAT32. Om te achterhalen welke packages je moet installeren, kan je 2 methodes gebruiken:
-- Ofwel ga je zelf op het internet opzoek naar de juiste paketten die hiervoor moet installeren.
+💡Je zal merken dat je een aantal packages moet installeren om de partities te kunnen formateren in NTFS of FAT32. Om te achterhalen welke packages je moet installeren, kan je 2 methodes gebruiken:
+- Ofwel ga je zelf op het internet opzoek naar de juiste paketten die je hiervoor moet installeren.
 - Ofwel log je via SSH in op leia.uclllabs.be op poort 22345 met je rnummer. De lijst met packages kan je vinden in /home/LDAP/u0148478/LabPartities
 
 Na het toevoegen van de parititie zou je ongeveer deze output moeten hebben:
@@ -335,33 +343,6 @@ sdb
 ├─sdb2 ext4   1.0         d07c0dac-6789-46f0-ae72-7cf548295042   15.7G     8% /
 └─sdb3 swap   1           357d776f-78af-4e0f-9ee7-88fad06138bb                [SWAP]
 sr0                                                                           
-```
-
-### Next Level
-Nu je perfect weet hoe een partitie in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren met partities:
-- Download volgende [iso]().
-? Maak dan een nieuwe VM aan
-- Nieuwe Mint vm aanmaken met correct partities (indeling zelf geven)
-
-Een goede linux installatie zal minimum steeds bestaan uit volgende partities:
-- swap
-- /
-- /home
-- /var
-- /tmp
-- EFI boot
-
-Deze partities zijn ook geconfigureerd op de 'Debian_mp' vm:
-```bash
-root@debian-mp:~# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0   20G  0 disk 
-├─sda1   8:1    0  512M  0 part /boot/efi
-├─sda2   8:2    0    4G  0 part /
-├─sda3   8:3    0  1.7G  0 part /var
-├─sda4   8:4    0  977M  0 part [SWAP]
-├─sda5   8:5    0  367M  0 part /tmp
-└─sda6   8:6    0 12.5G  0 part /home
 ```
 
 ## Raid
@@ -393,3 +374,33 @@ mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 /dev/sdc1 --level=5 --raid-devic
 - Bestanden nog beschikbaar?
 - Nieuwe SSD maken
 - Toevoegen aan Raid
+
+
+## Next Level
+Nu je perfect weet hoe je partities en raid  in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren met partities en een raid 1 cluster:
+- Download de Ubuntu server ISO.
+- Maak een nieuwe VM aan met 2GB RAM en 20GB HDD
+- Installeer Ubunbtu server door gebruik te maken van onderstaade verderling.
+- Eenmaal correct geïnstalleerd, sluit 2 HDD extra aan van 10GB en mount deze in een RAID1 cluster.
+- 💯 Indien er ook kan voor zorgen dat RAID cluster automatische gemount is na het opstarten ben je aardig opweg in linux (op voorwaarde dat je ook begrijpt wat je aan het configureren bent om dit mogelijk te maken)
+
+Een goede linux installatie zal minimum steeds bestaan uit volgende partities:
+- swap
+- /
+- /home
+- /var
+- /tmp
+- EFI boot
+
+Deze partities zijn ook geconfigureerd op de 'Debian_mp' vm, je mag gerust de grootte van deze parities overnemen voor je nieuwe VM:
+```bash
+root@debian-mp:~# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   20G  0 disk 
+├─sda1   8:1    0  512M  0 part /boot/efi
+├─sda2   8:2    0    4G  0 part /
+├─sda3   8:3    0  1.7G  0 part /var
+├─sda4   8:4    0  977M  0 part [SWAP]
+├─sda5   8:5    0  367M  0 part /tmp
+└─sda6   8:6    0 12.5G  0 part /home
+```
