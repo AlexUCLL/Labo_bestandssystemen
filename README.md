@@ -31,13 +31,13 @@ Hoewel dit een duidelijk overzicht geeft van alle partities die aangemaakt zijn 
 
 Ja kan nu zien dat er nog voldoende ruimte vrij is op de harde schijf. Hier gaan we verandering in brengen. Voer volgende commando's uit:
 ```bash
-su -
+$ su -
 ```
 Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'set user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van 'ucll' user *(dit is inderdaad niet veilig en het wachtwoord op zich ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
 
 Vervolgens voeren we volgende commando uit. Met wat je ondertussen hebt geleerd over Python en 'Linux Unhatched' zou dit normaal voleldig moeten begrijpen. Zoniet, zal `man` en 'Google' je al een heel eind verder brengen om het volledig te begrijpen.
 ```bash
-for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done
+# for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done
 ```
 Achterhaal hoeveel ruimte er nog vrij is op de harde schijf na het uitvoeren van dit commando.
 
@@ -49,7 +49,7 @@ Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op he
 
 Je mag de vm afsluiten door gebruik te maken volgend commando:
 ```bash
-shutdown -h now
+# shutdown -h now
 ```
 
 ## Harde schijf met parties
@@ -124,7 +124,7 @@ Hoewel Parted en GParted ons een mooi overzicht geven, is het ook mogelijk dit n
 #### GPT tabel extracten:
 We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's van een harde schijf bevind. Door gebruik te maken van `dd` kunnen we de nodige bytes kopieren naar een bestand. De meeste belangrijkste bytes bevinden zich in de GPT Header. Standaard zal deze zich in LBA 1 bevinden. Het commando om deze te kopieëren is: 
 ```bash
-dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
+# dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
 ```
 Na het uitvoeren van dit bestand bevindt de volledige inhoud van LBA 1 zich in de file 'header'.
 
@@ -172,7 +172,7 @@ Voor deze vragen zal je je kennis moeten gebruiken van de talstelsels dat we in 
 
 Pas volgende commando correct aan zodat je de inhoud van LBA2 in een nieuwe file zet
 ```bash
-dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
+# dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
 ```
 ![gpt3](./img/gpt2.png)
 
@@ -384,7 +384,7 @@ Op dit ogenblik hebben we eigenlijk een defecte harde schijf gesimuleerd. Om opt
 - Start je VM terug en kijk of de nieuwe harde schijf herkend wordt.
 - Gebruik volgende commando om de nieuwe harde schijf aan de cluster toe te voegen:
   ```bash
-      mdadm --manage /dev/md0 -a /dev/sdX
+      # mdadm --manage /dev/md0 -a /dev/sdX
   ```
   Via `# cat /proc/mdstat`kan je nu duidelijk zien dat de cluster aan het herstellen is.
 
