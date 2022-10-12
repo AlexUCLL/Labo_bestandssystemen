@@ -43,9 +43,9 @@ Achterhaal hoeveel ruimte er nog vrij is op de harde schijf na het uitvoeren van
 
 Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op het eerste zicht lijkt het alsof het systeem nog perfect werkt. Probeer nu om de applicatie 'screen' te installeren. Met wat je hebt geleerd in vorige labo's zou dit geen probleem mogen zijn.
 
-:question: Kan het systeem de applicatie installeren?
+❓ Kan het systeem de applicatie installeren?
 
-:question: Waarom wel/niet?
+❓ Waarom wel/niet?
 
 Je mag de vm afsluiten door gebruik te maken volgend commando:
 ```bash
@@ -62,9 +62,9 @@ Voer volgende stappen uit in deze vm:
 - Kijk na hoeveel ruimte er nog beschikbaar is op de harde schijf/partities
 - Installeer de applicate 'screen'
 
-:question: Lukt het nu wel om de applicatie te installeren?
+❓ Lukt het nu wel om de applicatie te installeren?
 
-:question: Waarom wel/niet?
+❓ Waarom wel/niet?
 
 Na dit deel van het labo zou het duidelijk moeten zijn wat één van de voordelen is van het gebruik van partities.
 
@@ -162,6 +162,7 @@ Probeer aan de hand van bovenstaande tabel en het `hexyl` command volgend gegeve
 - Grootte van item in partietitabel
 
 ❓Hoeveel partitie items bevinden zich in de tabel?
+
 ❓Wat is de grootte van een partitie item in de tabel?
 
 Voor deze vragen zal je je kennis moeten gebruiken van de talstelsels dat we in de eerste week hebben gezien.
@@ -286,8 +287,7 @@ sr0
 
 #### Partitie mounten
 
-Het enige wat ons nu nog rest is de geconfigureerde partie mounten zodat we ze werkelijk kunnen gebruiken in het OS
-:
+Het enige wat ons nu nog rest is de geconfigureerde partie mounten zodat we ze werkelijk kunnen gebruiken in het OS:
 ```bash
 root@debian-zp:/# mount -t auto /dev/sda1 /Party
 ```
