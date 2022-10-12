@@ -360,8 +360,18 @@ Een raid cluster aanmaken is niet zoveel verschillend als een partitie aanmaken.
   ```
 * Je RAID 1 cluster is op dit ogenblik aangemaakt. Deze wordt nu helemaal voorbereid om te kunnen gebruiken in je systeem. De status hiervan kan je nagaan door volgende commando:
   ```bash
-      # 
+      # cat /proc/mdstat
   ```
+* Je RAID 1 cluster heeft echter nog geen filesysteem geïnstalleerd. Hoe je dit moet doen, zou je normaal moeten weten. Kies voor het ext4 filesysteem.
+* Als je filesysteem geïnstalleerd is, moet je dit nog correct mounten in linux. Zorg dat je RAID 1 cluster gemount is in /Cluster1
+* Toevoegen een fstab
+
+Nu je RAID cluster is aangemaakt gaan we deze ook even uittesten:
+- Maak een paar bestanden aan op je cluster
+- Sluit je vm correct af.
+- Verwijder 1 harde schijf dat je gebruikt hebt in je RAID 1 cluster uit je VM configuratie
+- Start je VM terug op
+- Kijk je cluster na via `proc /dev/md0`
 
 - Bestand aanmaken
 - Afsluiten
@@ -372,8 +382,28 @@ Een raid cluster aanmaken is niet zoveel verschillend als een partitie aanmaken.
 - Toevoegen aan Raid
 
 ### Raid 5
+
+Een RAID 5 cluster aanmaken is pracktisch net hetzelfde als een RAID 1. Het enige verschil is dat je gebruik moet maken van minsten 3 harde schijven.
+
+❗Configureer zelf een RAID 5 cluster dat gemount is op /Cluster2 en EXT4 filesysteem heeft. Normaal ga enkel het 'mdadm --create' command correct moeten aanpassen.
+
+
+* Maak 2 nieuwe HDD's aan voor je 'Debian_zp' met dezelfde capaciteit.
+* Start je VM op en kijk na of je systeem de twee toegevoegde HDD's kan herkenen. Noteeer de correcte naam van de twee harde schijven.
+* Om je RAID 1 cluster aan te maken gebruik je volgend commando (zorg dat je 'X' vervangt door de correcte waarden):
+  ```bash
+      # mdadm --create /dev/md0 /dev/sdX /dev/sdX --level=1 --raid-devices=2
+  ```
+* Je RAID 1 cluster is op dit ogenblik aangemaakt. Deze wordt nu helemaal voorbereid om te kunnen gebruiken in je systeem. De status hiervan kan je nagaan door volgende commando:
+  ```bash
+      # cat /proc/mdstat
+  ```
+* Je RAID 1 cluster heeft echter nog geen filesysteem geïnstalleerd. Hoe je dit moet doen, zou je normaal moeten weten. Kies voor het ext4 filesysteem.
+* Als je filesysteem geïnstalleerd is, moet je dit nog correct mounten in linux. Zorg dat je RAID 1 cluster gemount is in /Cluster1
+* 
+
 ```bash
-mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 /dev/sdc1 --level=5 --raid-devices=3
+mdadm --create /dev/md/name /dev/sda /dev/sdb1 /dev/sdc1 --level=5 --raid-devices=3
 ```
 - Meerdere bestanden aanmaken
 - Afsluiten
