@@ -278,7 +278,7 @@ sr0
 
 #### Partitie mounten
 
-Het enige wat ons nu nog rest is de geconfigureerde partie nog te mounten:
+Het enige wat ons nu nog rest is de geconfigureerde partie  mounten:
 ```bash
 root@debian-zp:/# mount -t auto /dev/sda1 /Party
 ```
