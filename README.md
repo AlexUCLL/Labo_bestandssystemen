@@ -352,11 +352,17 @@ sr0
 ### Raid 1
 
 Een raid cluster aanmaken is niet zoveel verschillend als een partitie aanmaken.
-* Maak 2 nieuwe HDD's aan voor je 'Debian_zp'
+* Maak 2 nieuwe HDD's aan voor je 'Debian_zp' met dezelfde capaciteit.
 * Start je VM op en kijk na of je systeem de twee toegevoegde HDD's kan herkenen. Noteeer de correcte naam van de twee harde schijven.
-* ```bash
-      # mdadm --create /dev/md/name /dev/sdX /dev/sdX --level=1 --raid-devices=2
+* Om je RAID 1 cluster aan te maken gebruik je volgend commando (zorg dat je 'X' vervangt door de correcte waarden):
+  ```bash
+      # mdadm --create /dev/md0 /dev/sdX /dev/sdX --level=1 --raid-devices=2
   ```
+* Je RAID 1 cluster is op dit ogenblik aangemaakt. Deze wordt nu helemaal voorbereid om te kunnen gebruiken in je systeem. De status hiervan kan je nagaan door volgende commando:
+  ```bash
+      # 
+  ```
+
 - Bestand aanmaken
 - Afsluiten
 - Schijf verwijderen
