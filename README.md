@@ -317,6 +317,10 @@ tmpfs           195M     0  195M   0% /run/user/1000
   - Mount point: /Rocks
   - Filessystem: NTFS
 
+💡Je zal merken dat je hiervoor een aantal packages moet installeren om de partities te kunnen formateren in NTFS of FAT32. Om te achterhalen welke packages je moet installeren, kan je 2 methodes gebruiken:
+- Ofwel ga je zelf op het internet opzoek naar de juiste paketten die hiervoor moet installeren.
+- Ofwel log je via SSH in op leia.uclllabs.be op poort 22345 met je rnummer. De lijst met packages kan je vinden in /home/LDAP/u0148478/LabPartities
+
 Na het toevoegen van de parititie zou je ongeveer deze output moeten hebben:
 ```bash
 root@debian-zp:~# lsblk -f
@@ -333,7 +337,7 @@ sr0
 ```
 
 ### Next Level
-Nu je perfect weet hoe een partitie in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren:
+Nu je perfect weet hoe een partitie in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren met partities:
 - Download volgende [iso]().
 ? Maak dan een nieuwe VM aan
 - Nieuwe Mint vm aanmaken met correct partities (indeling zelf geven)
