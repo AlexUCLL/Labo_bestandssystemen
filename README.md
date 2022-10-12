@@ -418,7 +418,7 @@ mdadm --create /dev/md/name /dev/sda /dev/sdb1 /dev/sdc1 --level=5 --raid-device
 
 ## Next Level
 Nu je perfect weet hoe partities en RAID werkt en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren met partities en een RAID 1 cluster:
-- Download de Ubuntu server ISO.
+- Download de Ubuntu server [ISO](https://ubuntu.com/download/server).
 - Maak een nieuwe VM aan met 2GB RAM en 20GB HDD
 - Installeer Ubunbtu server door gebruik te maken van onderstaade verderling.
 - Eenmaal correct geïnstalleerd, sluit 2 HDD extra aan van 10GB en mount deze in een RAID1 cluster.
