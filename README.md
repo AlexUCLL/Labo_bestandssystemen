@@ -347,12 +347,16 @@ sr0
 
 ## Raid
 
-Nog eens korte uitleg over RAID
+
 
 ### Raid 1
-```
-mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 --level=1 --raid-devices=2
-```
+
+Een raid cluster aanmaken is niet zoveel verschillend als een partitie aanmaken.
+* Maak 2 nieuwe HDD's aan voor je 'Debian_zp'
+* Start je VM op en kijk na of je systeem de twee toegevoegde HDD's kan herkenen. Noteeer de correcte naam van de twee harde schijven.
+* ```bash
+      # mdadm --create /dev/md/name /dev/sdX /dev/sdX --level=1 --raid-devices=2
+  ```
 - Bestand aanmaken
 - Afsluiten
 - Schijf verwijderen
@@ -362,7 +366,7 @@ mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 --level=1 --raid-devices=2
 - Toevoegen aan Raid
 
 ### Raid 5
-```
+```bash
 mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 /dev/sdc1 --level=5 --raid-devices=3
 ```
 - Meerdere bestanden aanmaken
