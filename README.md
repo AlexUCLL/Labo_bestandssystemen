@@ -394,7 +394,7 @@ Een RAID 5 cluster aanmaken is pracktisch net hetzelfde als een RAID 1. Het enig
 
 ❗Configureer zelf een RAID 5 cluster dat gemount is op /Cluster2 en EXT4 filesysteem heeft. Normaal ga enkel het 'mdadm --create' command correct moeten aanpassen en de fstab file.
 
-💡 Probeer net zoals bij de RAID 1 cluster een aantal files aan te maken en daarna simulatie van faulty HDD te doen.
+💡 Probeer net zoals bij de RAID 1 cluster een aantal files aan te maken en daarna simulatie van faulty HDD te doen en de RAID 5 cluster te herstellen.
 
 
 ## Next Level
