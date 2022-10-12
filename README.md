@@ -377,12 +377,12 @@ mdadm --create /dev/md/name /dev/sda1 /dev/sdb1 /dev/sdc1 --level=5 --raid-devic
 
 
 ## Next Level
-Nu je perfect weet hoe je partities en raid  in elkaar zit en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren met partities en een raid 1 cluster:
+Nu je perfect weet hoe partities en RAID werkt en hoe je deze kan aanmaken, gaan we een nieuwe Linux distributie installeren met partities en een RAID 1 cluster:
 - Download de Ubuntu server ISO.
 - Maak een nieuwe VM aan met 2GB RAM en 20GB HDD
 - Installeer Ubunbtu server door gebruik te maken van onderstaade verderling.
 - Eenmaal correct geïnstalleerd, sluit 2 HDD extra aan van 10GB en mount deze in een RAID1 cluster.
-- 💯 Indien er ook kan voor zorgen dat RAID cluster automatische gemount is na het opstarten ben je aardig opweg in linux (op voorwaarde dat je ook begrijpt wat je aan het configureren bent om dit mogelijk te maken)
+- 💯 Indien er ook kan voor zorgen dat de RAID cluster automatische gemount is na het opstarten, ben je aardig opweg in linux (op voorwaarde dat je ook begrijpt wat je aan het configureren bent om dit mogelijk te maken)
 
 Een goede linux installatie zal minimum steeds bestaan uit volgende partities:
 - swap
