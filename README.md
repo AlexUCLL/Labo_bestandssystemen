@@ -422,7 +422,7 @@ Nu je perfect weet hoe partities en RAID werkt en hoe je deze kan aanmaken, gaan
 - Maak een nieuwe VM aan met 2GB RAM en 20GB HDD
 - Installeer Ubunbtu server door gebruik te maken van onderstaade verderling.
 - Eenmaal correct geïnstalleerd, sluit 2 HDD extra aan van 10GB en mount deze in een RAID1 cluster.
-- 💯 Indien er ook kan voor zorgen dat de RAID cluster automatische gemount is na het opstarten, ben je aardig opweg in linux (op voorwaarde dat je ook begrijpt wat je aan het configureren bent om dit mogelijk te maken)
+- Zorg dat je RAID cluster automatisch gemount wordt bij het opstarten.
 
 Een goede linux installatie zal minimum steeds bestaan uit volgende partities:
 - swap
