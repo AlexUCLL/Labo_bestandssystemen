@@ -168,6 +168,7 @@ Voor deze vragen zal je je kennis moeten gebruiken van de talstelsels dat we in 
 
 #### GPT entry bekijken
 ![gpt2](./img/LBA.png)
+
 Pas volgende commando correct aan zodat je de inhoud van LBA2 in een nieuwe file zet
 ```bash
 dd if=/dev/sda of=/root/header bs=512 skip=1 count=1
