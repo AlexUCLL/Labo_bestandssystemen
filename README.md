@@ -27,21 +27,23 @@ tmpfs               5120       0      5120   0% /run/lock
 /dev/sda1         523244    3496    519748   1% /boot/efi
 tmpfs             199600       0    199600   0% /run/user/1000
 ```
-Hoewel dit een duidelijk overzicht geeft van alle partities die aangemaakt zijn op de harde schijf, moet je zelf nog aan de slag om uit te rekenen wat de exacte schijfruimte is. Het commando `df` heeft echter een optie om dit zelf te bereken alvorens het overzicht te tonen. Hiervoor heb je in vorige labo's geleerd om gebruik te maken `--help` dat je het gebruik van het commando weergeeft. Er bestaat ook een andere manier om de details van een commando te achterhalen: `man`. Dit gebruik je steeds als volgt: `man <commando>`. Probeer nu zelf te achterhalen welke optie je moet meegeven aan het commando `df` om het overzicht in een leesbaar formaat te hebben.
+Hoewel dit een duidelijk overzicht geeft van alle partities die aangemaakt zijn op de harde schijf, moet je zelf nog aan de slag om uit te rekenen wat de exacte schijfruimte is. Het commando `df` heeft echter een optie om dit zelf te berekenen alvorens het overzicht te tonen. Hiervoor heb je in vorige labo's geleerd om gebruik te maken van de `--help` optie. Deze geeft het gebruik van het commando weer. Er bestaat ook een andere manier om de details van een commando te achterhalen: `man`. Dit gebruik je steeds als volgt: `man <commando>`. Probeer nu zelf te achterhalen welke optie je moet meegeven aan het commando `df` om het overzicht in een leesbaar formaat te hebben.
 
-Ja kan nu zien dat er nog voldoende ruimte vrij is op de harde schijf. Hier gaan we verandering in brengen. Voer volgende commando's uit:
+Je kan nu zien dat er nog voldoende ruimte vrij is op de harde schijf. Hier gaan we verandering in brengen. Voer volgende commando's uit:
 ```bash
 $ su -
 ```
-Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'set user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van 'ucll' user *(dit is inderdaad niet veilig en het wachtwoord op zich ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
+Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'switch user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van de 'ucll' user *(dit is inderdaad niet veilig en het wachtwoord zelf ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
 
-Vervolgens voeren we volgende commando uit. Met wat je ondertussen hebt geleerd over Python en 'Linux Unhatched' zou dit normaal voleldig moeten begrijpen. Zoniet, zal `man` en 'Google' je al een heel eind verder brengen om het volledig te begrijpen.
+Vervolgens voeren we volgende commando uit: 
 ```bash
 # for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done
 ```
+Met wat je ondertussen hebt geleerd over Python en 'Linux Unhatched' zou je dit normaal volledig moeten begrijpen. Zoniet, zal `man` en 'Google' je al een heel eind verder brengen om het volledig te begrijpen.
+
 Achterhaal hoeveel ruimte er nog vrij is op de harde schijf na het uitvoeren van dit commando.
 
-Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op het eerste zicht lijkt het alsof het systeem nog perfect werkt. Probeer nu om de applicatie 'screen' te installeren. Met wat je hebt geleerd in vorige labo's zou dit geen probleem mogen zijn.
+Je zal merken dat alle beschikbare ruimte op de harde schijf is ingenomen. Op het eerste zicht lijkt het alsof het systeem nog perfect werkt. Probeer nu om de applicatie 'screen' te installeren. Met wat je hebt geleerd in de vorige labo's zou dit geen probleem mogen zijn.
 
 ❓ Kan het systeem de applicatie installeren?
 
@@ -72,6 +74,7 @@ Na dit deel van het labo zou het duidelijk moeten zijn wat één van de voordele
 Nu we het nut van partities kennen, wordt het tijd om zelf te leren hoe je partities moeten aanmaaken, hetgeen niet zo moeilijk is. Hiervoor bestaan er heel wat tools die zowel in Linux als Windows beschikbaar zijn. Voor dit labo gaan wij gebruik maken van `parted`. Het voordeel van parted is, dat hiervoor ook een GUI applicatie is geschreven, dewelke je in Ubuntu kan gebruiken: `GParted`.
 
 Voor we zelf partities gaan aanmaken, gaan we eerst even een partitietabel van dichterbij bekijken.
+
 ### GParted
 
 Zorg dat alle voorgaande VM's correct afgesloten worden en start daarna je Ubuntu VM van het eerste labo. 'GParted' is normaal niet standaard geïnstalleerd op je vm. Het eerste wat we dus moeten doen is 'GParted' installeren.
@@ -84,15 +87,15 @@ Dit geeft je een overzicht van alle partities die op de harde schijf ter beschik
 - **Partition**: hier krijgen we de naam zoals dit gekend is op hardware niveau in het systeem.
 - **Name**: Bij het aanmaken van een partitie kunnen we een meer gebruiksvriendelijkere naam configureren
 - **File system**: Zoals we gezien hebben in de theorie moet elke paritie geformateerd worden in een bepaald filesysteem voor we gebruik kunnen maken van de partitie om files en directories aan te maken.
-- **Mount Point**: Naast een hardware verwijzing moet er ook een 'mount point' geconfigureerd worden. Dit is eigenlijk een directory waarin het filesysteem van die partitie beschikbaar wordt gemaakt voor het OS.
+- **Mount Point**: Naast een hardware verwijzing moet er ook een 'mount point' geconfigureerd worden. Dit is een directory waarin het filesysteem van die partitie beschikbaar wordt gemaakt voor het OS.
 - **Flags**: Voor elke partitie kunnen we bepaalde vlaggen instellen die een extra functionaliteit toevoegen aan een partitie. Zo moet er minstens 1 partitie met de 'boot flag' geconfigueerd worden om ervoor te zorgen dat het OS kan opstarten. De BIOS zal na zijn post immers deze partitie gebruiken om het OS te kunnen laten opstarten.
 
-Indien je nog meer details wilt weten over een bepaalde partitie volstaat om deze partitie te selecteren, rechter muisklik, 'Information'. Dit zal ook GUID laten zien, alsook de eerste en laatste sector die gebruikt is voor de partitie.
+Indien je nog meer details wilt weten over een bepaalde partitie volstaat om deze partitie te selecteren, rechter muisklik, 'Information'. Dit zal ook het GUID laten zien, alsook de eerste en laatste sector die gebruikt is voor de partitie.
 
 💡 Doe dit ook werkelijk voor alle partities!
 
 ### Parted
-Ook in cli kan je de partities bekijken van een harde schijf door gebruik te maken van `parted`. Zorg dat je de vm 'Debian_mp' opstart. Eenmaal opgestart voer volgende commando uit als root:
+Ook in cli kan je de partities bekijken door gebruik te maken van `parted`. Zorg dat je de vm 'Debian_mp' opstart. Eenmaal opgestart voer volgende commando uit als root:
 ```bash
 root@debian-mp:~# parted /dev/sda
 GNU Parted 3.4
@@ -129,9 +132,9 @@ We hebben in de theorie gezien dat de GPT partitietabel zich in de eerste LBA's 
 Na het uitvoeren van dit bestand bevindt de volledige inhoud van LBA 1 zich in de file 'header'.
 
 #### GPT header bekijken
-Probeer deze file nu eens uit te lezen. Het commando hiervoor hebben we al geleerd.
+Probeer deze file nu uit te lezen. Het commando hiervoor hebben we al geleerd.
 
-Echter dit geeft enkel volgende output (kan je ook verklaren waarom?):
+Echter dit geeft enkel volgende output (❓ kan je ook verklaren waarom?):
 ```
 EFI PART\�����"��P�d5�;D���K�������}a
 ```
@@ -186,7 +189,7 @@ Zorg dat je volgende gegevens uit de juist aangemaakte file kan halen:
 
 - Voeg een nieuwe harde schijf toe aan de 'Debian_zp' van 30GB toe.
 - Start de vm op
-- Eenmaal opgestart voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. Je nieuwe harde schijf moet hier normaal ook tussen staan. Zorg dat je duidelijk weet wat je nieuwe toegevoegde harde schijf is. Dit zal normaal `/dev/sda` zijn.
+- Eenmaal opgestart, voer dan volgende command uit: `lsblk`. Dit toont je onder andere een overzicht van alle harde schijven die aangesloten zijn. Je nieuwe harde schijf moet hier normaal ook tussen staan. Zorg dat je duidelijk weet wat je nieuwe toegevoegde harde schijf is. Dit zal normaal `/dev/sda` zijn.
 
 ```bash
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -379,22 +382,22 @@ Nu je RAID cluster is aangemaakt gaan we deze ook even uittesten:
 
 ❓ Kan je nog steeds aan je bestanden aan?
 
-Op dit ogenblik hebben we eigenlijk een defecte harde schijf gesimuleerd. Om optimaal gebruik te maken van je RAID 1 cluster moet je terug herstellen in zijn oorspronkelijke staat:
+Op dit ogenblik hebben we eigenlijk een defecte harde schijf gesimuleerd. Om optimaal gebruik te maken van je RAID 1 cluster moet je deze terug herstellen in zijn oorspronkelijke staat:
 - Maak een nieuwe HDD aan van dezelfde groote.
 - Start je VM terug en kijk of de nieuwe harde schijf herkend wordt.
 - Gebruik volgende commando om de nieuwe harde schijf aan de cluster toe te voegen:
   ```bash
       # mdadm --manage /dev/md0 -a /dev/sdX
   ```
-  Via `# cat /proc/mdstat`kan je nu duidelijk zien dat de cluster aan het herstellen is.
+  Via `# cat /proc/mdstat`kan je nu duidelijk zien dat de cluster zich aan het herstellen is.
 
 ### Raid 5
 
-Een RAID 5 cluster aanmaken is pracktisch net hetzelfde als een RAID 1. Het enige verschil is dat je gebruik moet maken van minsten 3 harde schijven.
+Een RAID 5 cluster aanmaken is pracktisch net hetzelfde als een RAID 1. Het enige verschil is dat je gebruik moet maken van minstens 3 harde schijven.
 
 ❗Configureer zelf een RAID 5 cluster dat gemount is op /Cluster2 en EXT4 filesysteem heeft. Normaal ga enkel het 'mdadm --create' command correct moeten aanpassen en de fstab file.
 
-💡 Probeer net zoals bij de RAID 1 cluster een aantal files aan te maken en daarna simulatie van faulty HDD te doen en de RAID 5 cluster te herstellen.
+💡 Probeer net zoals bij de RAID 1 cluster een aantal files aan te maken, een simulatie van faulty HDD en de RAID 5 cluster te herstellen.
 
 
 ## Next Level
@@ -425,3 +428,5 @@ sda      8:0    0   20G  0 disk
 ├─sda5   8:5    0  367M  0 part /tmp
 └─sda6   8:6    0 12.5G  0 part /home
 ```
+
+❗Let wel op, sommige partities moeten ook een correcte flag krijgen. Google zal je hierbij graag helpen.
