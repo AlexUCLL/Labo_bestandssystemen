@@ -331,7 +331,7 @@ tmpfs           195M     0  195M   0% /run/user/1000
 
 💡Je zal merken dat je een aantal packages moet installeren om de partities te kunnen formateren in NTFS of FAT32. Om te achterhalen welke packages je moet installeren, kan je 2 methodes gebruiken:
 - Ofwel ga je zelf op het internet opzoek naar de juiste paketten die je hiervoor moet installeren.
-- Ofwel log je via SSH in op leia.uclllabs.be op poort 22345 met je rnummer. De lijst met packages kan je vinden in /home/LDAP/u0148478/LabPartities
+- Ofwel log je via SSH in op leia.uclllabs.be op poort 22345 met je rnummer. De lijst met packages kan je vinden in /tmp/LabPartities
 
 Na het toevoegen van de parititie zou je ongeveer deze output moeten hebben:
 ```bash
