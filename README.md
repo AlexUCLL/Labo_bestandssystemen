@@ -36,7 +36,7 @@ Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'switch user', '
 
 Vervolgens voeren we volgende commando uit: 
 ```bash
-# for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done
+# for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=200; done
 ```
 Met wat je ondertussen hebt geleerd over Python en 'Linux Unhatched' zou je dit normaal volledig moeten begrijpen. Zoniet, zal `man` en 'Google' je al een heel eind verder brengen om het volledig te begrijpen.
 
@@ -59,7 +59,7 @@ Voer volgende stappen uit in deze vm:
 - Log in met de ucll gebruiker
 - Word 'root'
 - Kijk na hoeveel vrije ruimte er op de harde schijf/partities is.
-- Voer het volgende commando uit: `for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=100; done`
+- Voer het volgende commando uit: `for foo in {1..100}; do dd of=/var/log/$foo.full if=/dev/zero bs=1M count=200; done`
 - Kijk na hoeveel ruimte er nog beschikbaar is op de harde schijf/partities
 - Installeer de applicate 'screen'
 
