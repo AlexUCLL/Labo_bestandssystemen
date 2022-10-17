@@ -33,7 +33,7 @@ Je kan nu zien dat er nog voldoende ruimte vrij is op de harde schijf. Hier gaan
 ```bash
 $ su -
 ```
-Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'switch user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van de 'ucll' user *(dit is inderdaad niet veilig en het wachtwoord zelf ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
+Dit commando zorgt dat we root worden. `su` wil namelijk zeggen 'switch user', '-' wil zeggen root (en nog wat extra zaken, die nu nog niet belangrijk zijn). Root is de user dat in linux alle rechten heeft en dus ook alles mag doen op het systeem. Na het uitvoeren van het commando zal er gevraagd worden achter het wachtwoord. Dit is net hetzelfde als het wachtwoord van de 'ucll' user, behalve op de ARM (MacOS M1/M2) images, waar het wachtwoord 'root' is. *(dit is inderdaad niet veilig en het wachtwoord zelf ook niet, maar we zitten in een testomgeving waar we geen belangrijke documenten hebben staan of toegang hebben tot kritische onderdelen. Toch fijn dat je al zelf die gedachten hebt gemaakt. Dat wil zeggen dat je security hoog in het vaandel draagt)*
 
 Vervolgens voeren we volgende commando uit: 
 ```bash
